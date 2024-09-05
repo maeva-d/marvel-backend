@@ -10,7 +10,7 @@ router.get("/characters", async (req, res) => {
   try {
     if (req.query.apiKey === process.env.API_KEY) {
       // console.log(req.query)
-      // On met des paramètres par défaut grâce au || !! si une des valeurs est null alors c'est l'autre qui sera prise en compte
+      // On met des paramètres par défaut grâce au || !! si une des valeurs est falsy alors c'est l'autre qui sera prise en compte
       const limit = req.query.limit || 100;
       const skip = req.query.skip || 0;
       const name = req.query.name || "";
