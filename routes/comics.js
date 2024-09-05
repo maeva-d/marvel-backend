@@ -12,7 +12,7 @@ router.get("/comics", async (req, res) => {
       // On mets des paramètres par défaut !!
       const limit = req.query.limit || 100;
       const skip = req.query.skip || 0;
-      const title = req.query.name || "";
+      const title = req.query.title || "";
       const response = await axios.get(
         `https://lereacteur-marvel-api.herokuapp.com/comics?apiKey=${process.env.API_KEY}&limit=${limit}&skip=${skip}&title=${title}`
       );
