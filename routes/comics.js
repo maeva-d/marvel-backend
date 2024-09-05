@@ -9,8 +9,12 @@ require("dotenv").config();
 router.get("/comics", async (req, res) => {
   try {
     if (req.query.apiKey === process.env.API_KEY) {
+      // On mets des paramètres par défaut !!
+      const limit = req.query.limit || 100;
+      const skip = req.query.skip || 0;
+      const title = req.query.name || "";
       const response = await axios.get(
-        `https://lereacteur-marvel-api.herokuapp.com/comics?apiKey=${process.env.API_KEY}`
+        `https://lereacteur-marvel-api.herokuapp.com/comics?apiKey=${process.env.API_KEY}&limit=${limit}&skip=${skip}&name=${title}`
       );
       // console.log(response.data); OK !
       const data = response.data;
