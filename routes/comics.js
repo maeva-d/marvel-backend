@@ -53,25 +53,25 @@ router.get("/comics/:characterId", async (req, res) => {
   }
 });
 
-//// route GET pour récupérer des infos sur UN comics précis (comic sans S!)
+// //// route GET pour récupérer des infos sur UN comics précis (comic sans S!)
 
-router.get("/comic/:comicId", async (req, res) => {
-  try {
-    // console.log(req.query);
-    // console.log(req.params);
-    if (req.query.apiKey === process.env.API_KEY) {
-      const response = await axios.get(
-        `https://lereacteur-marvel-api.herokuapp.com/comic/${req.params.comicId}?apiKey=${process.env.API_KEY}`
-      );
-      const data = response.data;
-      // console.log("comic data =>", data);
-      return res.status(200).json(data);
-    } else {
-      return res.status(401).json("Access denied: you need a valid API key.");
-    }
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
+// router.get("/comic/:comicId", async (req, res) => {
+//   try {
+//     // console.log(req.query);
+//     // console.log(req.params);
+//     if (req.query.apiKey === process.env.API_KEY) {
+//       const response = await axios.get(
+//         `https://lereacteur-marvel-api.herokuapp.com/comic/${req.params.comicId}?apiKey=${process.env.API_KEY}`
+//       );
+//       const data = response.data;
+//       // console.log("comic data =>", data);
+//       return res.status(200).json(data);
+//     } else {
+//       return res.status(401).json("Access denied: you need a valid API key.");
+//     }
+//   } catch (error) {
+//     res.status(500).json({ message: error.message });
+//   }
+// });
 
 module.exports = router;
