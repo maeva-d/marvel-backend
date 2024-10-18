@@ -5,7 +5,6 @@ const router = express.Router();
 require("dotenv").config();
 
 //// route GET pour avoir la liste des comics
-// Il faut tester avec localhost sur postman les routes pour voir si les requêtes fonctionnent
 router.get("/comics", async (req, res) => {
   try {
     const limit = req.query.limit || 100;
@@ -27,7 +26,6 @@ router.get("/comics", async (req, res) => {
 });
 
 //// route GET pour récupérer tous les comics dans lequel un personnage apparaît
-
 router.get("/comics/:characterId", async (req, res) => {
   try {
     const limit = req.query.limit || 100;
@@ -35,15 +33,11 @@ router.get("/comics/:characterId", async (req, res) => {
     const skip = (page - 1) * limit;
     // console.log(req.query);
     // console.log(req.params);
-    // if (req.query.apiKey === process.env.API_KEY) {
     const response = await axios.get(
       `https://lereacteur-marvel-api.herokuapp.com/comics/${req.params.characterId}?apiKey=${process.env.API_KEY}&page=${page}`
     );
     const data = response.data;
     return res.status(200).json(data);
-    // } else {
-    //   return res.status(401).json("Access denied: you need a valid API key.");
-    // }
   } catch (error) {
     if (error.message === "Your apiKey is not valid") {
       return res.status(400).json({ message: "apiKey is not valid." });
